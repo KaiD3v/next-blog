@@ -1,0 +1,151 @@
+---
+    title: FUNÇÕES EM JAVASCRIPT
+    description: Aprenda o que são funções e como utilizá-las em JavaScript!
+    banner: https://miro.medium.com/v2/resize:fit:1100/format:webp/0*XFKvzn30CglSpb3o
+---
+```markdown
+# Funções em JavaScript
+
+As funções em JavaScript são blocos de código que executam uma tarefa ou calculam um valor. Elas permitem reutilizar código, tornando-o mais modular e organizado. Vamos explorar diferentes maneiras de declarar e usar funções em JavaScript!
+
+## Estrutura Básica de uma Função
+
+Para criar uma função, usamos a palavra-chave `function`, seguida do nome da função e de parênteses `()` que podem conter parâmetros. O bloco de código é definido entre chaves `{ }`.
+
+```javascript
+function saudacao() {
+  console.log("Olá, seja bem-vindo!");
+}
+
+saudacao(); // Chamada da função
+```
+
+A função `saudacao` não recebe parâmetros e simplesmente exibe uma mensagem no console.
+
+## Funções com Parâmetros
+
+Podemos passar valores para uma função usando parâmetros. Estes são especificados dentro dos parênteses.
+
+```javascript
+function saudacao(nome) {
+  console.log(`Olá, ${nome}! Seja bem-vindo!`);
+}
+
+saudacao("Ana"); // Exibe: Olá, Ana! Seja bem-vindo!
+```
+
+Aqui, a função `saudacao` recebe um argumento `nome`, que é inserido na mensagem.
+
+## Funções com Retorno de Valores
+
+Para que uma função retorne um valor, usamos a palavra-chave `return`. O valor retornado pode ser atribuído a uma variável.
+
+```javascript
+function soma(a, b) {
+  return a + b;
+}
+
+let resultado = soma(5, 3);
+console.log(resultado); // Exibe: 8
+```
+
+A função `soma` retorna a soma dos dois parâmetros, e o resultado é armazenado em `resultado`.
+
+## Funções Anônimas
+
+Uma função anônima é uma função sem nome que pode ser atribuída a uma variável ou usada como argumento em outras funções.
+
+```javascript
+const multiplicacao = function (a, b) {
+  return a * b;
+};
+
+console.log(multiplicacao(4, 5)); // Exibe: 20
+```
+
+Aqui, uma função anônima é atribuída à variável `multiplicacao`.
+
+## Arrow Functions (Funções de Seta)
+
+As arrow functions, introduzidas no ES6, têm uma sintaxe mais curta e não têm seu próprio `this` (contexto). Elas são ideais para funções simples e são declaradas usando a `=>`.
+
+```javascript
+const saudacao = (nome) => {
+  console.log(`Olá, ${nome}!`);
+};
+
+saudacao("Pedro"); // Exibe: Olá, Pedro!
+```
+
+Quando há apenas um parâmetro, podemos omitir os parênteses, e se o corpo da função tiver apenas uma linha, as chaves `{}` e `return` são opcionais.
+
+```javascript
+const dobro = numero => numero * 2;
+
+console.log(dobro(4)); // Exibe: 8
+```
+
+## Funções Recursivas
+
+Uma função recursiva chama a si mesma até que uma condição de parada seja atingida. Por exemplo, a função abaixo calcula o fatorial de um número.
+
+```javascript
+function fatorial(n) {
+  if (n === 0) return 1;
+  return n * fatorial(n - 1);
+}
+
+console.log(fatorial(5)); // Exibe: 120 (5 * 4 * 3 * 2 * 1)
+```
+
+A função `fatorial` se chama repetidamente, diminuindo o valor de `n` até que `n` seja 0.
+
+## Funções de Ordem Superior
+
+Uma função de ordem superior é uma função que recebe outra função como argumento ou retorna uma função como resultado.
+
+```javascript
+function aplicarOperacao(a, b, operacao) {
+  return operacao(a, b);
+}
+
+const soma = (x, y) => x + y;
+const subtracao = (x, y) => x - y;
+
+console.log(aplicarOperacao(10, 5, soma)); // Exibe: 15
+console.log(aplicarOperacao(10, 5, subtracao)); // Exibe: 5
+```
+
+Aqui, `aplicarOperacao` recebe uma função `operacao` como argumento e a utiliza para calcular o resultado.
+
+## Parâmetros Opcionais e Valores Padrão
+
+Podemos definir valores padrão para parâmetros que são utilizados caso o argumento não seja fornecido.
+
+```javascript
+function cumprimentar(nome, saudacao = "Olá") {
+  console.log(`${saudacao}, ${nome}!`);
+}
+
+cumprimentar("Carlos"); // Exibe: Olá, Carlos!
+cumprimentar("Carlos", "Bem-vindo"); // Exibe: Bem-vindo, Carlos!
+```
+
+Neste exemplo, o parâmetro `saudacao` tem um valor padrão `"Olá"`.
+
+## Funções Imediatamente Invocadas (IIFE)
+
+Uma IIFE (Immediately Invoked Function Expression) é uma função que é executada logo após ser definida. Útil para criar escopos locais e evitar poluição do escopo global.
+
+```javascript
+(function () {
+  console.log("Esta função é imediatamente invocada!");
+})();
+```
+
+## Resumo
+
+As funções em JavaScript são extremamente flexíveis e podem ser utilizadas de diversas maneiras para tornar seu código mais modular e organizado. Desde funções básicas até funções de ordem superior e recursivas, o JavaScript oferece várias ferramentas para resolver diferentes tipos de problemas.
+
+Explore as possibilidades e experimente diferentes tipos de funções para entender como elas podem tornar o desenvolvimento em JavaScript ainda mais eficiente!
+```
