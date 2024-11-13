@@ -26,7 +26,7 @@ export default async function Home() {
   );
 
   return (
-    <main className="w-full h-full my-10 mx-auto max-w-[1280px] bg-gray-200/50 rounded">
+    <main className="w-full h-full my-10 mx-auto max-w-[1280px] rounded">
       <section className="w-full flex flex-col justify-center items-center mt-10">
         <h1 className="font-bold text-2xl">Postagens</h1>
         <div className="flex flex-wrap justify-center gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">

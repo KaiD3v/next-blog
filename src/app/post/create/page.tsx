@@ -68,7 +68,7 @@ export default function CreatePost() {
           id="post-description"
           value={postDescription}
           onChange={(e) => setPostDescription(e.target.value)}
-          placeholder="Descrção da página"
+          placeholder="Descrção do post"
           className="w-full p-4 bg-white rounded-lg border border-gray-300 focus:outline-none focus:border-purple-500"
           type="text"
         />

@@ -12,25 +12,24 @@ export function Card({ title, description, banner }: CardProps) {
   return (
     <Link
       href={`/post/${title}`}
-      className="flex flex-col rounded bg-purple-950 w-full sm:w-64 md:w-72 lg:w-80 max-h-96 m-4"
+      className="group flex flex-col rounded-lg w-full sm:w-64 md:w-72 lg:w-80 max-h-96 m-4 overflow-hidden transition-transform transform hover:scale-105"
     >
-      <header className="w-full text-center">
-        <h1 className="bg-white text-black m-3 p-2 rounded">
-          {formattedTitle}
-        </h1>
-      </header>
-      <section className="w-full h-48 overflow-hidden">
+      <section className="relative w-full h-48 overflow-hidden rounded-t-lg">
         <img
-        className="object-cover"
-          src={banner}
-          alt="blog"
+          className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+          src={banner || "https://www.creativefabrica.com/wp-content/uploads/2022/03/05/Stylish-abstract-pattern-design-Graphics-26514963-1-1-580x386.jpg"}
+          alt={formattedTitle}
         />
+        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-3">
+          <h1 className="text-white text-lg font-semibold line-clamp-1">
+            {formattedTitle}
+          </h1>
+        </div>
       </section>
-      <footer className="flex justify-center items-center text-white text-center mt-4 mb-5 overflow-y-hidden">
-        <p className="w-full max-w-lg mt-4 break-words line-clamp-4">
-          {description}
-        </p>
+      <footer className="flex items-start bg-gray-800 text-white text-sm p-4 rounded-b-lg max-h-24 overflow-hidden">
+        <p className="line-clamp-3">{description}</p>
       </footer>
     </Link>
   );
+
 }
