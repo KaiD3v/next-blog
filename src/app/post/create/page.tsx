@@ -5,6 +5,8 @@ import { FormEvent, useState } from "react";
 export default function CreatePost() {
   const [postContent, setPostContent] = useState("");
   const [postSlug, setPostSlug] = useState("");
+  const [postDescription, setPostDescription] = useState("");
+  const [postBanner, setPostBanner] = useState("");
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -15,7 +17,7 @@ export default function CreatePost() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ postSlug, postContent }),
+        body: JSON.stringify({ postSlug, postContent, postDescription, postBanner }),
       });
 
       if (response.ok) {
@@ -46,7 +48,7 @@ export default function CreatePost() {
           htmlFor="post-slug"
           className="block text-lg font-medium text-gray-700"
         >
-          Slug do Post
+          Título do Post
         </label>
         <input
           id="post-slug"
@@ -56,7 +58,34 @@ export default function CreatePost() {
           className="w-full p-4 bg-white rounded-lg border border-gray-300 focus:outline-none focus:border-purple-500"
           type="text"
         />
-
+        <label
+          htmlFor="post-description"
+          className="block text-lg font-medium text-gray-700"
+        >
+          Descrição do Post
+        </label>
+        <input
+          id="post-description"
+          value={postDescription}
+          onChange={(e) => setPostDescription(e.target.value)}
+          placeholder="Descrção da página"
+          className="w-full p-4 bg-white rounded-lg border border-gray-300 focus:outline-none focus:border-purple-500"
+          type="text"
+        />
+        <label
+          htmlFor="post-banner"
+          className="block text-lg font-medium text-gray-700"
+        >
+          Banner do Post
+        </label>
+        <input
+          id="post-banner"
+          value={postBanner}
+          onChange={(e) => setPostBanner(e.target.value)}
+          placeholder="Insira o link de uma imagem para servir de banner"
+          className="w-full p-4 bg-white rounded-lg border border-gray-300 focus:outline-none focus:border-purple-500"
+          type="text"
+        />
         <label
           htmlFor="post-content"
           className="block text-lg font-medium text-gray-700"

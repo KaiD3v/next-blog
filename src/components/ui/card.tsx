@@ -19,8 +19,9 @@ export function Card({ title, description, banner }: CardProps) {
           {formattedTitle}
         </h1>
       </header>
-      <section className="relative w-full h-48">
+      <section className="w-full h-48 overflow-hidden">
         <img
+        className="object-cover"
           src={banner}
           alt="blog"
         />

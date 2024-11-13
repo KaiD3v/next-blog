@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { postSlug, postContent } = await req.json();
+    const { postSlug, postContent, postDescription, postBanner } = await req.json();
 
     if (!postSlug || !postContent) {
       return NextResponse.json(
@@ -14,13 +14,20 @@ export async function POST(req: NextRequest) {
     }
 
     const markdownDirectoryPath = path.join(process.cwd(), '/src/markdown');
-    const filePath = path.join(markdownDirectoryPath, `${postSlug}.mdx`);
+    const filePath = path.join(markdownDirectoryPath, `${postSlug.replaceAll(" ", "-")}.mdx`);
 
     if (!fs.existsSync(markdownDirectoryPath)) {
       fs.mkdirSync(markdownDirectoryPath, { recursive: true });
     }
 
-    fs.writeFileSync(filePath, postContent, 'utf8');
+    fs.writeFileSync(
+      filePath,
+      `---
+    title: ${postSlug}
+    description: ${postDescription}
+    banner: ${postBanner}\n---\n${postContent}`,
+      'utf8'
+    );
 
     return NextResponse.json({ message: 'Post criado com sucesso' }, { status: 200 });
   } catch (error) {
