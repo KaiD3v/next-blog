@@ -1,45 +1,39 @@
-// app/[slug]/page.tsx
-import fs from "fs";
 import path from "path";
+import fs from "fs";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
-import { redirect } from "next/navigation";
 
-interface BlogPostProps {
-  params: {
-    slug: string;
-  };
-}
-
-async function fetchBlogPost(slug: string) {
+export async function fetchBlogPost(slug: string) {
   try {
     const filePath = path.join(process.cwd(), "src", "markdown", `${slug}.mdx`);
-
     const fileContent = fs.readFileSync(filePath, "utf8");
 
     const { content, data } = matter(fileContent);
+
+    const postData = {
+      title: data.title || "", 
+      description: data.description || "",
+      banner: data.banner || "", 
+    };
+
 
     const processedContent = await remark().use(html).process(content);
     const contentHtml = processedContent.toString();
 
     return {
       contentHtml,
-      data,
+      data: postData,
     };
   } catch (error) {
-    redirect("/");
+    console.error("Erro ao buscar o post:", error);
+    return {
+      contentHtml: "",
+      data: {
+        title: "Erro",
+        description: "Erro ao carregar o post",
+        banner: "",
+      },
+    };
   }
-}
-
-export default async function BlogPost({ params }: BlogPostProps) {
-  const { slug } = await params;
-
-  const post = await fetchBlogPost(slug);
-
-  return (
-    <main className="prose mx-auto">
-      <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
-    </main>
-  );
 }
