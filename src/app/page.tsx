@@ -32,7 +32,7 @@ export default async function Home() {
         <div className="flex flex-wrap justify-center gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">
           {posts.length > 0 &&
             posts.map((post, index) => (
-              <Card key={index} title={formattedSlugs[index]} description={post.data.description} banner={post.data.banner}/>
+              <Card key={index} title={post.data.title} formattedTitle={formattedSlugs[index]} description={post.data.description} banner={post.data.banner}/>
             ))}
         </div>
       </section>
